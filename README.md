@@ -12,7 +12,6 @@ This repo contains the code for a RESTful API Education  App that was built usin
 <li>NodeJS</li>
 </ul>
 
-<<<<<<< HEAD
 
 
 <h3>Maintain Relation between Subject , Lesson , Question and Crud </h3>
@@ -20,8 +19,6 @@ This repo contains the code for a RESTful API Education  App that was built usin
 
 
 
-=======
 
 
-<h3>Maintain Relation between Subject , Lesson , Question and Crud </h3>
->>>>>>> ff30b7dd727d136d50abd2367883c9fb28747079
+
