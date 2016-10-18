@@ -4,6 +4,13 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 
 
 var refresh = function() {
+  $scope.hidUpsub   =  true;
+  $scope.hidSaveSub = false;
+  $scope.hidUpLes   = true;
+  $scope.shwLes     = true;
+  $scope.shwQuesbtn = true;
+  $scope.upQuesBtn  = true;
+
   $http.get('/subjectlist').success(function(response) {
    // console.log(response);
     $scope.subjectlist = response;
@@ -38,7 +45,8 @@ $scope.quesView = function(id)
 }
 
 $scope.editQues = function(id) {
-
+  $scope.shwQuesbtn = false;
+  $scope.upQuesBtn  = false;
   // console.log(id);
   $http.get('/editQues/' + id).success(function(response) {
     //$scope.checked =true;
@@ -61,6 +69,8 @@ $scope.editQues = function(id) {
 
 
 $scope.updateQues = function() {
+    $scope.shwQuesbtn = true;
+  $scope.upQuesBtn  = true;
   console.log($scope.ques._id);
   $http.put('/updateQues/' + $scope.ques._id, $scope.ques).success(function(response) {
     $scope.ques ="";
@@ -82,8 +92,9 @@ $scope.addSubject = function() {
 //lesson form
 $scope.lessonForm = function(subid)
 {
-    
-    $scope.les = {'_subid': subid};
+     $scope.hidUpLes   = true;
+     $scope.shwLes     = true;
+     $scope.les = {'_subid': subid};
   //   $http.post('/createLesson/'+subid, $scope.les).success(function(response) {
   //   console.log(response);
   //   //refresh();
@@ -121,8 +132,8 @@ $scope.lessonView = function(id)
  //editLesson
 
  $scope.editLesson = function(id) {
-
-  // console.log(id);
+  $scope.hidUpLes   = false;
+  $scope.shwLes     = false;
   $http.get('/editLesson/' + id).success(function(response) {
     //$scope.checked =true;
    console.log(response);
@@ -156,9 +167,10 @@ $scope.remove = function(id) {
 
 $scope.edit = function(id) {
 
-  // console.log(id);
+  $scope.hidUpsub =false;
+  $scope.hidSaveSub =true;
+
   $http.get('/editSubject/' + id).success(function(response) {
-    $scope.checked =true;
    console.log(response);
    $scope.sub = response;
     //console($scope);
@@ -167,9 +179,9 @@ $scope.edit = function(id) {
 };  
 
 $scope.update = function() {
+  $scope.hidUpsub   = true;
   console.log($scope.sub._id);
   $http.put('/updateSubject/' + $scope.sub._id, $scope.sub).success(function(response) {
-    $scope.checked =false;
     refresh();
   })
 };
